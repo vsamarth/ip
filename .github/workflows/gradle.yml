@@ -30,6 +30,13 @@ jobs:
           java-version: '11'
           java-package: jdk+fx
 
-      - name: Build and check with Gradle
-        run: make compile
+      - name: Build and check with gradle
+        run: |
+          if [ "${{ matrix.platform }}" = "windows-latest" ]; then
+            ./gradlew.bat build
+          else
+            make compile
+          fi
+
+    
 
